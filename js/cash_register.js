@@ -9,6 +9,7 @@
 // }
 
 //Create all buttons
+(function() {
 
 let btn1 = document.createElement('button')
 btn1.className = "btn"
@@ -115,3 +116,4 @@ findRows[4].appendChild(btnPay)
 
 let findButtons = document.querySelectorAll(".btn")
 console.log(findButtons)
+})();
