@@ -47,36 +47,36 @@ btn00.className = "btn"
 let btnDecimal = document.createElement('button')
 btnDecimal.innerHTML = "."
 btnDecimal.className = 'btn'
-let btnAdd = document.createElement('button')
-btnAdd.innerHTML = "+"
-btnAdd.className = "btn"
-let btnSubtract = document.createElement('button')
-btnSubtract.innerHTML = "-"
-btnSubtract.className = "btn"
-let btnMultiply = document.createElement('button')
-btnMultiply.innerHTML = "*"
-btnMultiply.className = "btn"
-let btnDivide = document.createElement('button')
-btnDivide.innerHTML = "/"
-btnDivide.className = "btn"
-let btnEquals = document.createElement('button')
-btnEquals.innerHTML = "="
-btnEquals.className = "btn"
-let btnBalance = document.createElement('button')
-btnBalance.innerHTML = "Balance"
-btnBalance.className = "btn"
-let btnDeposit = document.createElement('button')
-btnDeposit.innerHTML = "Deposit"
-btnDeposit.className = 'btn'
-let btnWithdraw = document.createElement('button')
-btnWithdraw.innerHTML = "Withdraw"
-btnWithdraw.className = 'btn'
-let btnClear = document.createElement('button')
-btnClear.innerHTML = "Clear"
-btnClear.className = 'btn'
-let btnPay = document.createElement('button')
-btnPay.innerHTML = "Pay"
-btnPay.className = 'btn'
+let operatorAdd = document.createElement('button')
+operatorAdd.innerHTML = "+"
+operatorAdd.className = "operator"
+let operatorSubtract = document.createElement('button')
+operatorSubtract.innerHTML = "-"
+operatorSubtract.className = "operator"
+let operatorMultiply = document.createElement('button')
+operatorMultiply.innerHTML = "*"
+operatorMultiply.className = "operator"
+let operatorDivide = document.createElement('button')
+operatorDivide.innerHTML = "/"
+operatorDivide.className = "operator"
+let operatorEquals = document.createElement('button')
+operatorEquals.innerHTML = "="
+operatorEquals.className = "operator"
+let operatorBalance = document.createElement('button')
+operatorBalance.innerHTML = "Balance"
+operatorBalance.className = "operator"
+let operatorDeposit = document.createElement('button')
+operatorDeposit.innerHTML = "Deposit"
+operatorDeposit.className = 'operator'
+let operatorWithdraw = document.createElement('button')
+operatorWithdraw.innerHTML = "Withdraw"
+operatorWithdraw.className = 'operator'
+let operatorClear = document.createElement('button')
+operatorClear.innerHTML = "Clear"
+operatorClear.className = 'operator'
+let operatorPay = document.createElement('button')
+operatorPay.innerHTML = "Pay"
+operatorPay.className = 'operator'
 
 let findRows = document.getElementsByClassName("calcBtn")
 //Row 1
@@ -84,36 +84,62 @@ let findRows = document.getElementsByClassName("calcBtn")
 findRows[0].appendChild(btn7)
 findRows[0].appendChild(btn8)
 findRows[0].appendChild(btn9)
-findRows[0].appendChild(btnDivide)
-findRows[0].appendChild(btnClear)
 
 //Row 2
 
 findRows[1].appendChild(btn4)
 findRows[1].appendChild(btn5)
 findRows[1].appendChild(btn6)
-findRows[1].appendChild(btnMultiply)
-findRows[1].appendChild(btnBalance)
 
 //Row 3
 
 findRows[2].appendChild(btn1)
 findRows[2].appendChild(btn2)
 findRows[2].appendChild(btn3)
-findRows[2].appendChild(btnSubtract)
-findRows[2].appendChild(btnDeposit)
 
 //Row 4
 
 findRows[3].appendChild(btn0)
 findRows[3].appendChild(btn00)
 findRows[3].appendChild(btnDecimal)
-findRows[3].appendChild(btnAdd)
-findRows[3].appendChild(btnWithdraw)
 
 //Row 5
-findRows[4].appendChild(btnPay)
+findRows[4].appendChild(operatorAdd)
+findRows[4].appendChild(operatorWithdraw)
+findRows[4].appendChild(operatorSubtract)
+findRows[4].appendChild(operatorDeposit)
+findRows[4].appendChild(operatorMultiply)
+findRows[4].appendChild(operatorBalance)
+findRows[4].appendChild(operatorDivide)
+findRows[4].appendChild(operatorClear)
+findRows[4].appendChild(operatorPay)
 
+let findDisplay = document.getElementById("calcDisplay");
+let findOperatorIcon = document.getElementById("operator")
 let findButtons = document.querySelectorAll(".btn")
-console.log(findButtons)
+console.log(findOperatorIcon)
+
+for (let i = 0; i < 12; i++) {
+    findButtons[i].addEventListener("click", function(){
+            findDisplay.innerHTML+=this.innerHTML
+
+    })
+}
+
+
+let findOperators = document.querySelectorAll(".operator");
+console.log(findOperators)
+
+for (let x = 0; x < findOperators.length; x++) {
+    findOperators[x].addEventListener("click", function(){
+        findOperatorIcon.innerHTML = ""
+        findOperatorIcon.innerHTML = this.innerHTML
+        // if(findOperatorIcon.innerHTML.includes("+")) {
+        //     console.log(findDisplay)
+        //     // let y = parseInt(findDisplay.innerHTML)
+        //     // register.load(y)
+        // }
+    })
+}
+
 })();

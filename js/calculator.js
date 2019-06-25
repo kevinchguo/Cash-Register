@@ -22,6 +22,20 @@ var register = (function() {
         return balance;
     }
 
+    calculator.load = function(x) {
+        total = x
+        console.log(total)
+        return total;
+    }
+
+    calculator.saveMemory = function() {
+        memory = total
+    }
+
+    calculator.clearMemory = function() {
+        memory = 0;
+    }
+
     calculator.getRegisterTotal = function() {
         console.log("You have " + registerTotal + " left in your register")
         return registerTotal;
@@ -72,10 +86,10 @@ var register = (function() {
 
 })();
 
-register.depositCash(250)
-console.log(register.add(50))
-console.log(register.add(50))
-console.log(register.getBalance())
-// register.clearBalance()
-register.orderFood()
-console.log(register.getRegisterTotal())
+// register.depositCash(250)
+// console.log(register.add(50))
+// console.log(register.add(50))
+// console.log(register.getBalance())
+// // register.clearBalance()
+// register.orderFood()
+// console.log(register.getRegisterTotal())
