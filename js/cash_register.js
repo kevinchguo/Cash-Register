@@ -132,13 +132,15 @@ console.log(findOperators)
 
 for (let x = 0; x < findOperators.length; x++) {
     findOperators[x].addEventListener("click", function(){
-        findOperatorIcon.innerHTML = ""
-        findOperatorIcon.innerHTML = this.innerHTML
+        console.log(typeof findDisplay.innerHTML)
+        if(typeof findDisplay.innerHTML === "string") {
+            findOperatorIcon.innerHTML = ""
+            findOperatorIcon.innerHTML = this.innerHTML
         // if(findOperatorIcon.innerHTML.includes("+")) {
         //     console.log(findDisplay)
         //     // let y = parseInt(findDisplay.innerHTML)
         //     // register.load(y)
-        // }
+        }
     })
 }
 
