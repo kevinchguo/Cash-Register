@@ -112,6 +112,7 @@ findRows[4].appendChild(operatorWithdraw)
 findRows[4].appendChild(operatorSubtract)
 findRows[4].appendChild(operatorDivide)
 findRows[4].appendChild(operatorMultiply)
+findRows[4].appendChild(operatorEquals)
 
 // Row 6
 findRows[5].appendChild(operatorDeposit)
@@ -143,7 +144,7 @@ for (let x = 0; x < 4; x++) { //0 - 4 to target operators only
     if (typeof findDisplay.innerHTML === "string")
     findOperators[x].addEventListener("click", function(){        
         let x = parseInt(findDisplay.innerHTML)
-        findDisplay.innerHTML = ""
+        findDisplay.innerHTML = this.innerHTML
         register.saveMemory()
             if (this.innerHTML === "+") {
                 register.add(x)
@@ -163,13 +164,13 @@ for (let x = 0; x < 4; x++) { //0 - 4 to target operators only
 
 //Balance button
 
-findOperators[6].addEventListener("click", function(){
+findOperators[7].addEventListener("click", function(){
     findDisplay.innerHTML = register.getBalance()
 })
 
 //Delete most recent entered button
 
-findOperators[7].addEventListener("click", function(){
+findOperators[8].addEventListener("click", function(){
     let z = findDisplay.innerHTML;
     let sliceNum = z.slice(0, z.length - 1)
     console.log(sliceNum)
@@ -179,14 +180,14 @@ findOperators[7].addEventListener("click", function(){
 
 //Clear memory
 
-findOperators[8].addEventListener("click", function(){
+findOperators[9].addEventListener("click", function(){
     register.clearMemory()
     findDisplay.innerHTML = register.getBalance()
 })
 
 //Deposit money from register
 
-findOperators[4].addEventListener("click", function(){
+findOperators[5].addEventListener("click", function(){
     let x = parseInt(prompt("How much do you want to Deposit?"))
     console.log(x)
     // if(typeof x !== "number") {
@@ -198,7 +199,7 @@ findOperators[4].addEventListener("click", function(){
 
 //Withdraw money from register
 
-findOperators[5].addEventListener("click", function(){
+findOperators[6].addEventListener("click", function(){
     let x = parseInt(prompt("How much do you want to Withdraw?"))
     findDisplay.innerHTML = register.withdrawCash(x)
 })
