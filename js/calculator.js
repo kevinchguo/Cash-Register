@@ -23,6 +23,7 @@ var register = (function() {
     }
 
     calculator.load = function(x) {
+        this.validations(x)
         total = x
         console.log(total)
         return total;
@@ -30,10 +31,14 @@ var register = (function() {
 
     calculator.saveMemory = function() {
         memory = total
+        console.log(memory)
+        return memory
     }
 
     calculator.clearMemory = function() {
         memory = 0;
+        total = 0;
+        console.log(memory)
     }
 
     calculator.getRegisterTotal = function() {
@@ -48,38 +53,50 @@ var register = (function() {
     }
 
     calculator.depositCash = function(x) {
-        registerTotal = registerTotal + x
+        this.validations(x)
+        registerTotal+= x
         return registerTotal;
     }
 
     calculator.withdrawCash = function (x) {
+        this.validations(x)
         registerTotal = registerTotal - x
         return registerTotal;
     }
 
     calculator.add = function(x) {
+        this.validations(x)
         console.log("added " + x)
-        memory += x;
+        total += x;
     }
 
     calculator.subtract = function(x) {
+        this.validations(x)
         console.log("subtracted " + x)
-        memory -= x;
+        total -= x;
     }
 
     calculator.multiply = function(x) {
+        this.validations(x)
         console.log("multiplied " + x)
-        memory *= x;
+        total *= x;
     }
 
     calculator.divide = function(x) {
+        this.validations(x)
         console.log("divided " + x)
-        memory /= x;
+        total /= x;
     }
 
     calculator.orderFood = function() {
         console.log("i bought " + balance + " of items")
         registerTotal -= balance
+    }
+     
+    calculator.validations = function(x) {
+        if (typeof x !== "number") {
+            return "Error"
+        }
     }
 
     return calculator;

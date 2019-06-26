@@ -74,6 +74,9 @@ operatorWithdraw.className = 'operator'
 let operatorClear = document.createElement('button')
 operatorClear.innerHTML = "Clear"
 operatorClear.className = 'operator'
+let operatorDelete = document.createElement('button')
+operatorDelete.innerHTML = "Delete"
+operatorDelete.className = 'operator'
 let operatorPay = document.createElement('button')
 operatorPay.innerHTML = "Pay"
 operatorPay.className = 'operator'
@@ -107,17 +110,23 @@ findRows[3].appendChild(btnDecimal)
 findRows[4].appendChild(operatorAdd)
 findRows[4].appendChild(operatorWithdraw)
 findRows[4].appendChild(operatorSubtract)
-findRows[4].appendChild(operatorDeposit)
-findRows[4].appendChild(operatorMultiply)
-findRows[4].appendChild(operatorBalance)
 findRows[4].appendChild(operatorDivide)
-findRows[4].appendChild(operatorClear)
-findRows[4].appendChild(operatorPay)
+findRows[4].appendChild(operatorMultiply)
+
+// Row 6
+findRows[5].appendChild(operatorDeposit)
+findRows[5].appendChild(operatorWithdraw)
+findRows[5].appendChild(operatorBalance)
+findRows[5].appendChild(operatorDelete)
+findRows[5].appendChild(operatorClear)
+findRows[5].appendChild(operatorPay)
 
 let findDisplay = document.getElementById("calcDisplay");
 let findOperatorIcon = document.getElementById("operator")
 let findButtons = document.querySelectorAll(".btn")
 console.log(findOperatorIcon)
+
+//Display 1-9 on findDisplay div
 
 for (let i = 0; i < 12; i++) {
     findButtons[i].addEventListener("click", function(){
@@ -126,22 +135,78 @@ for (let i = 0; i < 12; i++) {
     })
 }
 
+//Operation buttons
 
 let findOperators = document.querySelectorAll(".operator");
 console.log(findOperators)
-
-for (let x = 0; x < findOperators.length; x++) {
-    findOperators[x].addEventListener("click", function(){
-        console.log(typeof findDisplay.innerHTML)
-        if(typeof findDisplay.innerHTML === "string") {
-            findOperatorIcon.innerHTML = ""
-            findOperatorIcon.innerHTML = this.innerHTML
-        // if(findOperatorIcon.innerHTML.includes("+")) {
-        //     console.log(findDisplay)
-        //     // let y = parseInt(findDisplay.innerHTML)
-        //     // register.load(y)
-        }
+for (let x = 0; x < 4; x++) { //0 - 4 to target operators only
+    if (typeof findDisplay.innerHTML === "string")
+    findOperators[x].addEventListener("click", function(){        
+        let x = parseInt(findDisplay.innerHTML)
+        findDisplay.innerHTML = ""
+        register.saveMemory()
+            if (this.innerHTML === "+") {
+                register.add(x)
+                register.saveMemory()
+            } else if (this.innerHTML === "-") {
+                register.subtract(x)
+                register.saveMemory()
+            } else if (this.innerHTML === "*") {
+                register.multiply(x)
+                register.saveMemory()
+            } else if (this.innerHTML === "/") {
+                register.divide(x)
+                register.saveMemory()
+            }
     })
 }
+
+//Balance button
+
+findOperators[6].addEventListener("click", function(){
+    findDisplay.innerHTML = register.getBalance()
+})
+
+//Delete most recent entered button
+
+findOperators[7].addEventListener("click", function(){
+    let z = findDisplay.innerHTML;
+    let sliceNum = z.slice(0, z.length - 1)
+    console.log(sliceNum)
+    findDisplay.innerHTML = sliceNum
+
+})
+
+//Clear memory
+
+findOperators[8].addEventListener("click", function(){
+    register.clearMemory()
+    findDisplay.innerHTML = register.getBalance()
+})
+
+//Deposit money from register
+
+findOperators[4].addEventListener("click", function(){
+    let x = parseInt(prompt("How much do you want to Deposit?"))
+    console.log(x)
+    // if(typeof x !== "number") {
+    //     findDisplay.innerHTML = register.depositCash(0)
+    // } else {
+        findDisplay.innerHTML = register.depositCash(x)
+    // }
+})
+
+//Withdraw money from register
+
+findOperators[5].addEventListener("click", function(){
+    let x = parseInt(prompt("How much do you want to Withdraw?"))
+    findDisplay.innerHTML = register.withdrawCash(x)
+})
+
+//Pay button
+
+// findOperators[9].addEventListener("click", function(){
+//     register
+// })
 
 })();

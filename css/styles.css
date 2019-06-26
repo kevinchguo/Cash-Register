@@ -13,6 +13,28 @@ body {
 
 }
 
+#calcDisplay::before {
+    content: "$";
+}
+
+.calcBtn{
+    display: flex;
+    border
+    padding: 1px;
+}
+
+.calcbtn:nth-child(1) {
+    background-color: red;
+}
+
+.btn {
+    display: flex;
+    flex-grow: initial;
+    margin: 2px;
+    padding: 15px;
+    border-radius: 15px
+}
+
 .operator:nth-child() {
 
 }
