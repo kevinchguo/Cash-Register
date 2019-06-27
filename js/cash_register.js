@@ -63,23 +63,23 @@ let operatorEquals = document.createElement('button')
 operatorEquals.innerHTML = "="
 operatorEquals.className = "operator"
 let operatorBalance = document.createElement('button')
-operatorBalance.innerHTML = "Balance"
-operatorBalance.className = "operator"
+operatorBalance.innerHTML = "Total"
+operatorBalance.className = "function"
 let operatorDeposit = document.createElement('button')
-operatorDeposit.innerHTML = "Deposit"
-operatorDeposit.className = 'operator'
+operatorDeposit.innerHTML = "DEP"
+operatorDeposit.className = 'function'
 let operatorWithdraw = document.createElement('button')
-operatorWithdraw.innerHTML = "Withdraw"
-operatorWithdraw.className = 'operator'
+operatorWithdraw.innerHTML = "W/D"
+operatorWithdraw.className = 'function'
 let operatorClear = document.createElement('button')
 operatorClear.innerHTML = "Clear"
-operatorClear.className = 'operator'
+operatorClear.className = 'function'
 let operatorDelete = document.createElement('button')
 operatorDelete.innerHTML = "Delete"
-operatorDelete.className = 'operator'
+operatorDelete.className = 'function'
 let operatorPay = document.createElement('button')
 operatorPay.innerHTML = "Pay"
-operatorPay.className = 'operator'
+operatorPay.className = 'function'
 
 let findRows = document.getElementsByClassName("calcBtn")
 //Row 1
@@ -106,33 +106,34 @@ findRows[3].appendChild(btn0)
 findRows[3].appendChild(btn00)
 findRows[3].appendChild(btnDecimal)
 
-//Row 5
-findRows[4].appendChild(operatorAdd)
-findRows[4].appendChild(operatorWithdraw)
-findRows[4].appendChild(operatorSubtract)
-findRows[4].appendChild(operatorDivide)
-findRows[4].appendChild(operatorMultiply)
-findRows[4].appendChild(operatorEquals)
+// Row 5
 
-// Row 6
-findRows[5].appendChild(operatorDeposit)
-findRows[5].appendChild(operatorWithdraw)
-findRows[5].appendChild(operatorBalance)
-findRows[5].appendChild(operatorDelete)
-findRows[5].appendChild(operatorClear)
-findRows[5].appendChild(operatorPay)
+findRows[4].appendChild(operatorDeposit)
+findRows[4].appendChild(operatorWithdraw)
+findRows[4].appendChild(operatorBalance)
+findRows[4].appendChild(operatorDelete)
+findRows[4].appendChild(operatorClear)
+findRows[4].appendChild(operatorPay)
+
+//Operators
+
+let findOperatorId = document.getElementById("operationBtns")
+
+findOperatorId.appendChild(operatorAdd)
+findOperatorId.appendChild(operatorSubtract)
+findOperatorId.appendChild(operatorDivide)
+findOperatorId.appendChild(operatorMultiply)
+findOperatorId.appendChild(operatorEquals)
 
 let findDisplay = document.getElementById("calcDisplay");
-let findOperatorIcon = document.getElementById("operator")
 let findButtons = document.querySelectorAll(".btn")
-console.log(findOperatorIcon)
 
 //Display 1-9 on findDisplay div
-
+console.log(findDisplay.innerHTML)
 for (let i = 0; i < 12; i++) {
     findButtons[i].addEventListener("click", function(){
             findDisplay.innerHTML+=this.innerHTML
-
+            
     })
 }
 
@@ -141,11 +142,10 @@ for (let i = 0; i < 12; i++) {
 let findOperators = document.querySelectorAll(".operator");
 console.log(findOperators)
 for (let x = 0; x < 4; x++) { //0 - 4 to target operators only
-    if (typeof findDisplay.innerHTML === "string")
-    findOperators[x].addEventListener("click", function(){        
-        let x = parseInt(findDisplay.innerHTML)
-        findDisplay.innerHTML = this.innerHTML
-        register.saveMemory()
+    // if (typeof findDisplay.innerHTML === "string")
+    findOperators[x].addEventListener("click", function(){                  
+        let x = parseFloat(findDisplay.innerHTML)
+        findDisplay.innerHTML = '';
             if (this.innerHTML === "+") {
                 register.add(x)
                 register.saveMemory()
@@ -159,18 +159,34 @@ for (let x = 0; x < 4; x++) { //0 - 4 to target operators only
                 register.divide(x)
                 register.saveMemory()
             }
+        // findDisplay.innerHTML = 
     })
 }
 
-//Balance button
+//Equals button
 
-findOperators[7].addEventListener("click", function(){
+findOperators[4].addEventListener("click", function(){
+    console.log('hi')
     findDisplay.innerHTML = register.getBalance()
+})
+
+// findOperators[5].di
+
+
+/*======================function buttons====================*/
+
+let findFunctions = document.querySelectorAll(".function")
+console.log(findFunctions)
+
+//Total button
+
+findFunctions[2].addEventListener("click", function(){
+    findDisplay.innerHTML = register.getBalance().toFixed(2)
 })
 
 //Delete most recent entered button
 
-findOperators[8].addEventListener("click", function(){
+findFunctions[3].addEventListener("click", function(){
     let z = findDisplay.innerHTML;
     let sliceNum = z.slice(0, z.length - 1)
     console.log(sliceNum)
@@ -180,15 +196,15 @@ findOperators[8].addEventListener("click", function(){
 
 //Clear memory
 
-findOperators[9].addEventListener("click", function(){
+findFunctions[4].addEventListener("click", function(){
     register.clearMemory()
     findDisplay.innerHTML = register.getBalance()
 })
 
 //Deposit money from register
 
-findOperators[5].addEventListener("click", function(){
-    let x = parseInt(prompt("How much do you want to Deposit?"))
+findFunctions[0].addEventListener("click", function(){
+    let x = parseFloat(prompt("How much do you want to Deposit?"))
     console.log(x)
     // if(typeof x !== "number") {
     //     findDisplay.innerHTML = register.depositCash(0)
@@ -199,15 +215,16 @@ findOperators[5].addEventListener("click", function(){
 
 //Withdraw money from register
 
-findOperators[6].addEventListener("click", function(){
-    let x = parseInt(prompt("How much do you want to Withdraw?"))
+findFunctions[1].addEventListener("click", function(){
+    let x = parseFloat(prompt("How much do you want to Withdraw?"))
     findDisplay.innerHTML = register.withdrawCash(x)
 })
 
-//Pay button
+// Pay button
+//able to buy multiple items
 
-// findOperators[9].addEventListener("click", function(){
-//     register
-// })
+findFunctions[5].addEventListener("click", function(){
+    register.orderFood()
+})
 
 })();

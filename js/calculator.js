@@ -13,7 +13,6 @@ var register = (function() {
     let balance = 0; //what you see on the calculator
     let total = 0;
     let memory = 0; //what the balance totals to
-    let clearBalance = 0;
     let registerTotal = 0;
     let calculator = {};
     
@@ -36,20 +35,14 @@ var register = (function() {
     }
 
     calculator.clearMemory = function() {
-        memory = 0;
-        total = 0;
+        memory = '';
+        total = '';
         console.log(memory)
     }
 
     calculator.getRegisterTotal = function() {
         console.log("You have " + registerTotal + " left in your register")
         return registerTotal;
-    }
-
-    calculator.clearBalance = function() {
-        console.log("I cleared my balance of " + balance)
-        balance = clearBalance;
-        return total;
     }
 
     calculator.depositCash = function(x) {
@@ -90,7 +83,7 @@ var register = (function() {
 
     calculator.orderFood = function() {
         console.log("i bought " + balance + " of items")
-        registerTotal -= balance
+        registerTotal+=balance
     }
      
     calculator.validations = function(x) {
