@@ -15,28 +15,61 @@ var register = (function() {
     let memory = 0; //what the balance totals to
     let registerTotal = 0;
     let calculator = {};
-    
-    calculator.getBalance = function() {
-        balance = memory;
-        return balance;
+    let firstNum = null; 
+    let operator = null;
+    let secondNum = null;
+    let menuItem = null;
+
+    // calculator.load = function(x) {
+    //     total = x
+    //     console.log(total)
+    //     return total;
+    // }
+
+    // calculator.saveMemory = function() {
+    //     memory = total
+    //     console.log(memory)
+    //     return memory
+    // }
+
+    calculator.getBalance = function(num) {
+        if (isNaN(num)) {
+            console.log("its not a num")
+            return balance;
+        } else {
+            balance+=num;
+            console.log("its a num")
+            return balance;
+        }
     }
 
-    calculator.load = function(x) {
-        this.validations(x)
-        total = x
-        console.log(total)
-        return total;
+    calculator.saveFirstNumber = function(num) {
+        firstNum = num;
     }
 
-    calculator.saveMemory = function() {
-        memory = total
-        console.log(memory)
-        return memory
+    calculator.saveOperator = function(oper) {
+        operator = oper;
+    }
+
+    calculator.runEquation = function(secondNum) {
+        if (operator === "+") {
+            total = firstNum + parseFloat(secondNum);
+            return total;
+        } else if (operator === "-") {
+            total = firstNum - parseFloat(secondNum);
+            return total;
+        } else if (operator === "*") {
+            total = firstNum * parseFloat(secondNum);
+            return total;
+        } else if (operator === "/") {
+            total = firstNum / parseFloat(secondNum);
+            return total;
+        }
     }
 
     calculator.clearMemory = function() {
-        memory = '';
-        total = '';
+        firstNum = '';
+        secondNum = '';
         console.log(memory)
     }
 
@@ -46,14 +79,12 @@ var register = (function() {
     }
 
     calculator.depositCash = function(x) {
-        this.validations(x)
-        registerTotal+= x
+        registerTotal+=x
         return registerTotal;
     }
 
     calculator.withdrawCash = function (x) {
-        this.validations(x)
-        registerTotal = registerTotal - x
+        registerTotal-=x
         return registerTotal;
     }
 
@@ -90,6 +121,14 @@ var register = (function() {
         if (typeof x !== "number") {
             return "Error"
         }
+    }
+
+    calculator.findMenuItem = function(menuItemPrice) {
+        menuItem = menuItemPrice
+    }
+
+    calculator.returnMenuItemPrice = function() {
+        return menuItem;
     }
 
     return calculator;

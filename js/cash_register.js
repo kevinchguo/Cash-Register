@@ -133,7 +133,6 @@ console.log(findDisplay.innerHTML)
 for (let i = 0; i < 12; i++) {
     findButtons[i].addEventListener("click", function(){
             findDisplay.innerHTML+=this.innerHTML
-            
     })
 }
 
@@ -141,33 +140,30 @@ for (let i = 0; i < 12; i++) {
 
 let findOperators = document.querySelectorAll(".operator");
 console.log(findOperators)
-for (let x = 0; x < 4; x++) { //0 - 4 to target operators only
+for (let i = 0; i < 4; i++) { //0 - 4 to target operators only
     // if (typeof findDisplay.innerHTML === "string")
-    findOperators[x].addEventListener("click", function(){                  
+    findOperators[i].addEventListener("click", function(){   
         let x = parseFloat(findDisplay.innerHTML)
         findDisplay.innerHTML = '';
+        register.saveFirstNumber(x)
             if (this.innerHTML === "+") {
-                register.add(x)
-                register.saveMemory()
+                register.saveOperator("+")
             } else if (this.innerHTML === "-") {
-                register.subtract(x)
-                register.saveMemory()
+                register.saveOperator("-")
             } else if (this.innerHTML === "*") {
-                register.multiply(x)
-                register.saveMemory()
+                register.saveOperator("*")
             } else if (this.innerHTML === "/") {
-                register.divide(x)
-                register.saveMemory()
+                register.saveOperator("/")
             }
-        // findDisplay.innerHTML = 
     })
 }
 
 //Equals button
 
 findOperators[4].addEventListener("click", function(){
-    console.log('hi')
-    findDisplay.innerHTML = register.getBalance()
+    console.log('press equals')
+    let secondNum = parseFloat(findDisplay.innerHTML);
+    findDisplay.innerHTML = register.runEquation(secondNum);
 })
 
 // findOperators[5].di
@@ -181,7 +177,8 @@ console.log(findFunctions)
 //Total button
 
 findFunctions[2].addEventListener("click", function(){
-    findDisplay.innerHTML = register.getBalance().toFixed(2)
+    let x = findDisplay.innerHTML
+    findDisplay.innerHTML = register.getBalance(x)
 })
 
 //Delete most recent entered button
@@ -198,19 +195,16 @@ findFunctions[3].addEventListener("click", function(){
 
 findFunctions[4].addEventListener("click", function(){
     register.clearMemory()
-    findDisplay.innerHTML = register.getBalance()
+    findDisplay.innerHTML = ''
 })
 
 //Deposit money from register
 
 findFunctions[0].addEventListener("click", function(){
-    let x = parseFloat(prompt("How much do you want to Deposit?"))
-    console.log(x)
-    // if(typeof x !== "number") {
-    //     findDisplay.innerHTML = register.depositCash(0)
-    // } else {
-        findDisplay.innerHTML = register.depositCash(x)
-    // }
+    let x = parseInt(prompt("How much do you want to Deposit?"))
+    console.log(typeof x)
+    findDisplay.innerHTML = register.depositCash(x)
+
 })
 
 //Withdraw money from register
@@ -224,7 +218,9 @@ findFunctions[1].addEventListener("click", function(){
 //able to buy multiple items
 
 findFunctions[5].addEventListener("click", function(){
+    register.getBalance(parseFloat(findDisplay.innerHTML))
     register.orderFood()
+    findDisplay.innerHTML = '';
 })
   
 //Drop downlist functionality
@@ -248,14 +244,27 @@ let picUrl = {
     5: "https://s3-media4.fl.yelpcdn.com/bphoto/9lN3DuAGOyUdZsX8kU3cHA/o.jpg",
 }
 console.log(picUrl[0])
+
+//shows pic from object and also adds price to findMenuItem func
+
+let findMenuItemPrices = document.querySelectorAll(".price")
+console.log(parseInt(findMenuItemPrices[0].innerHTML))
 for (let y = 0; y < findahref.length; y++) {
     findahref[y].addEventListener("click", function() {
         findPics[1].src = picUrl[y]
+        console.log(findMenuItemPrices[y])
+        let x = parseInt(findMenuItemPrices[y].innerHTML) //gets the price of item
+        console.log(x)
+        register.findMenuItem(x) //saves price of item into variable
     })
 }
 
-//Add price of pic to total button
+//adds price of menu item onto display
 
-
+let findAddToBillBtn = document.getElementById("addItemToTotal");
+console.log(findAddToBillBtn.innerHTML)
+findAddToBillBtn.addEventListener("click", function() {
+    findDisplay.innerHTML = register.returnMenuItemPrice()
+})
 
 })();
