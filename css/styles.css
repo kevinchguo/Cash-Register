@@ -1,5 +1,7 @@
 body {
     background-color: white;
+    background-size: auto;
+    background-image: url("http://inspiredboy.com/uploads/201509/full/auspicious-clouds-shading-pattern-vector-1-62c9030a222c9c0c18ecb0756f11bc9f.jpg")
 }
 
 #restaurantName {
@@ -9,7 +11,7 @@ body {
 #calculator {
     display: flex;
     border: 0;
-    width: 300px;
+    width: 200px;
     height: 350px;
     flex-direction: column;
 }
@@ -20,16 +22,21 @@ body {
     border: 0;
     height: 50px;
     width: 200px;
+    font-size: x-large;
+    font-family: 'Roboto Condensed', sans-serif;
 }
 
 #flex {
     display: flex;
+    padding-right: 300px;
 }
 
 #calcDisplay::before {
     content: "$";
     color: #77ff33;
     font-size: xx-large;
+    font-family: 'Roboto Condensed', sans-serif;
+
 }
 
 #buttonBox{
@@ -80,10 +87,86 @@ button {
 
 .operator {
     font-size: larger;
+    font-family: 'Roboto Condensed', sans-serif;
+
 }
 
 /* 1-9 keypads */
 .btn {
     font-size: x-large;
+    font-family: 'Roboto Condensed', sans-serif;
+
 }
 
+.function {
+    font-size: medium;
+    font-family: 'Roboto Condensed', sans-serif;
+
+}
+
+/*Drop down list*/
+
+.dropbtn {
+    display: flex;
+    flex-wrap: wrap;
+    font-family: 'Roboto Condensed', sans-serif;
+    background-color: rgb(228, 92, 126);
+    color: white;
+    margin-top: 0px;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    border-radius: 10px;
+    width: 100px;
+    border-radius: 0px 20px 20px 0px;
+}
+
+.dropdown {
+    position: relative;
+    display: flex;
+    width: 100px;
+    height: 50px;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    border-radius: 0px 20px 20px 0px;
+    z-index: 1;
+    height: 350px;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+      background-color: #ddd;
+      border-radius: 0px 20px 20px 0px;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: #3e8e41;
+}
+
+#bigBox {
+    display:flex;
+}
+
+#foodPics {
+    display: flex;
+}
+
+img {
+    display: none;
+}

@@ -63,7 +63,7 @@ let operatorEquals = document.createElement('button')
 operatorEquals.innerHTML = "="
 operatorEquals.className = "operator"
 let operatorBalance = document.createElement('button')
-operatorBalance.innerHTML = "Total"
+operatorBalance.innerHTML = "TOTAL"
 operatorBalance.className = "function"
 let operatorDeposit = document.createElement('button')
 operatorDeposit.innerHTML = "DEP"
@@ -72,13 +72,13 @@ let operatorWithdraw = document.createElement('button')
 operatorWithdraw.innerHTML = "W/D"
 operatorWithdraw.className = 'function'
 let operatorClear = document.createElement('button')
-operatorClear.innerHTML = "Clear"
+operatorClear.innerHTML = "CLR"
 operatorClear.className = 'function'
 let operatorDelete = document.createElement('button')
-operatorDelete.innerHTML = "Delete"
+operatorDelete.innerHTML = "DEL"
 operatorDelete.className = 'function'
 let operatorPay = document.createElement('button')
-operatorPay.innerHTML = "Pay"
+operatorPay.innerHTML = "PAY"
 operatorPay.className = 'function'
 
 let findRows = document.getElementsByClassName("calcBtn")
@@ -226,5 +226,23 @@ findFunctions[1].addEventListener("click", function(){
 findFunctions[5].addEventListener("click", function(){
     register.orderFood()
 })
+  
+//Drop downlist functionality
+
+//Find a href buttons
+
+let findahref = document.querySelectorAll("a")
+console.log(findahref)
+
+//find pics
+
+let findPics = document.querySelectorAll("img")
+console.log(findPics)
+
+for (let y = 0; y < findahref.length; y++) {
+    findahref[y].addEventListener("click", showHide())
+}
+
+//add to total button
 
 })();
