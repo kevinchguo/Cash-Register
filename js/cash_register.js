@@ -239,10 +239,23 @@ console.log(findahref)
 let findPics = document.querySelectorAll("img")
 console.log(findPics)
 
+let picUrl = {
+    0: "https://s3-media2.fl.yelpcdn.com/bphoto/4elgJ-sdvXARBrBfqC7iLg/o.jpg",
+    1: "https://s3-media1.fl.yelpcdn.com/bphoto/0_W_nmHcNW1PUBcrOZwnaQ/o.jpg",
+    2: "https://s3-media3.fl.yelpcdn.com/bphoto/_CkJQD-SGBYaZ32sNst02g/o.jpg",
+    3: "https://s3-media2.fl.yelpcdn.com/bphoto/LOYKCYhpQhbO20bLwYxZbA/o.jpg",
+    4: "https://s3-media3.fl.yelpcdn.com/bphoto/dvKTnBXtkUNpilzJBPl5Yw/o.jpg",
+    5: "https://s3-media4.fl.yelpcdn.com/bphoto/9lN3DuAGOyUdZsX8kU3cHA/o.jpg",
+}
+console.log(picUrl[0])
 for (let y = 0; y < findahref.length; y++) {
-    findahref[y].addEventListener("click", showHide())
+    findahref[y].addEventListener("click", function() {
+        findPics[1].src = picUrl[y]
+    })
 }
 
-//add to total button
+//Add price of pic to total button
+
+
 
 })();
