@@ -132,7 +132,8 @@ let findButtons = document.querySelectorAll(".btn")
 console.log(findDisplay.innerHTML)
 for (let i = 0; i < 12; i++) {
     findButtons[i].addEventListener("click", function(){
-            findDisplay.innerHTML+=this.innerHTML
+        findDisplay.innerHTML+=this.innerHTML
+        // if (findDisplay.innerHTML)
     })
 }
 
