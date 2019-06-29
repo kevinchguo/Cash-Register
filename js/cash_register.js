@@ -54,10 +54,10 @@ let operatorSubtract = document.createElement('button')
 operatorSubtract.innerHTML = "-"
 operatorSubtract.className = "operator"
 let operatorMultiply = document.createElement('button')
-operatorMultiply.innerHTML = "*"
+operatorMultiply.innerHTML = "x"
 operatorMultiply.className = "operator"
 let operatorDivide = document.createElement('button')
-operatorDivide.innerHTML = "/"
+operatorDivide.innerHTML = "÷"
 operatorDivide.className = "operator"
 let operatorEquals = document.createElement('button')
 operatorEquals.innerHTML = "="
@@ -136,13 +136,19 @@ for (let i = 0; i < 12; i++) {
     })
 }
 
+//Find update button
+
+let findUpdate = document.getElementById("update");
+console.log(findUpdate.innerHTML)
+
 //Operation buttons
 
 let findOperators = document.querySelectorAll(".operator");
 console.log(findOperators)
 for (let i = 0; i < 4; i++) { //0 - 4 to target operators only
     // if (typeof findDisplay.innerHTML === "string")
-    findOperators[i].addEventListener("click", function(){   
+    findOperators[i].addEventListener("click", function(){  
+        console.log("I clicked " + this.innerHTML) 
         let x = parseFloat(findDisplay.innerHTML)
         findDisplay.innerHTML = '';
         register.saveFirstNumber(x)
@@ -150,20 +156,27 @@ for (let i = 0; i < 4; i++) { //0 - 4 to target operators only
                 register.saveOperator("+")
             } else if (this.innerHTML === "-") {
                 register.saveOperator("-")
-            } else if (this.innerHTML === "*") {
-                register.saveOperator("*")
-            } else if (this.innerHTML === "/") {
-                register.saveOperator("/")
+            } else if (this.innerHTML === "x") {
+                register.saveOperator("x")
+            } else if (this.innerHTML === "÷") {
+                register.saveOperator("÷")
             }
     })
 }
+
+
 
 //Equals button
 
 findOperators[4].addEventListener("click", function(){
     console.log('press equals')
+    findUpdate.innerHTML = '';
+    if (findDisplay.innerHTML === '') {
+        findDisplay.innerHTML = register.returnFirstNumber()
+    } else {
     let secondNum = parseFloat(findDisplay.innerHTML);
     findDisplay.innerHTML = register.runEquation(secondNum);
+    }
 })
 
 // findOperators[5].di
@@ -179,6 +192,7 @@ console.log(findFunctions)
 findFunctions[2].addEventListener("click", function(){
     let x = findDisplay.innerHTML
     findDisplay.innerHTML = register.getBalance(x)
+
 })
 
 //Delete most recent entered button
@@ -201,7 +215,7 @@ findFunctions[4].addEventListener("click", function(){
 //Deposit money from register
 
 findFunctions[0].addEventListener("click", function(){
-    let x = parseInt(prompt("How much do you want to Deposit?"))
+    let x = parseInt(prompt("How much do you want to Deposit? (enter 0 to see balance)"))
     console.log(typeof x)
     findDisplay.innerHTML = register.depositCash(x)
 
@@ -248,6 +262,7 @@ console.log(picUrl[0])
 //shows pic from object and also adds price to findMenuItem func
 
 let findMenuItemPrices = document.querySelectorAll(".price")
+let findDropdownContent = 
 console.log(parseInt(findMenuItemPrices[0].innerHTML))
 for (let y = 0; y < findahref.length; y++) {
     findahref[y].addEventListener("click", function() {
@@ -256,6 +271,7 @@ for (let y = 0; y < findahref.length; y++) {
         let x = parseInt(findMenuItemPrices[y].innerHTML) //gets the price of item
         console.log(x)
         register.findMenuItem(x) //saves price of item into variable
+
     })
 }
 

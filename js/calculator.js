@@ -19,6 +19,7 @@ var register = (function() {
     let operator = null;
     let secondNum = null;
     let menuItem = null;
+    let update = null;
 
     // calculator.load = function(x) {
     //     total = x
@@ -45,10 +46,19 @@ var register = (function() {
 
     calculator.saveFirstNumber = function(num) {
         firstNum = num;
+        console.log("This is the first num " + firstNum)
+    }
+
+    calculator.returnFirstNumber = function() {
+        return firstNum;
     }
 
     calculator.saveOperator = function(oper) {
         operator = oper;
+    }
+
+    calculator.returnUpdate = function() {
+
     }
 
     calculator.runEquation = function(secondNum) {
@@ -58,10 +68,10 @@ var register = (function() {
         } else if (operator === "-") {
             total = firstNum - parseFloat(secondNum);
             return total;
-        } else if (operator === "*") {
+        } else if (operator === "x") {
             total = firstNum * parseFloat(secondNum);
             return total;
-        } else if (operator === "/") {
+        } else if (operator === "÷") {
             total = firstNum / parseFloat(secondNum);
             return total;
         }
@@ -70,6 +80,7 @@ var register = (function() {
     calculator.clearMemory = function() {
         firstNum = '';
         secondNum = '';
+        update = '';
         console.log(memory)
     }
 
@@ -79,13 +90,21 @@ var register = (function() {
     }
 
     calculator.depositCash = function(x) {
+        if (isNaN(x)) {
+            return registerTotal
+        } else {
         registerTotal+=x
         return registerTotal;
+        }
     }
 
     calculator.withdrawCash = function (x) {
+        if (isNaN(x)) {
+            return registerTotal;
+        } else {
         registerTotal-=x
         return registerTotal;
+        }
     }
 
     calculator.add = function(x) {

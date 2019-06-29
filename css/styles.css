@@ -34,6 +34,16 @@ body {
     font-family: 'Roboto Condensed', sans-serif;
 }
 
+#update {
+    background-color: #333333;
+    color: white;
+    border: 0;
+    height: 50px;
+    width: 200px;
+    font-size: small;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
 #flex {
     display: flex;
     padding-right: 300px;
