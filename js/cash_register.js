@@ -285,3 +285,16 @@ findAddToBillBtn.addEventListener("click", function() {
 })
 
 })();
+
+function div3n5(num) {
+    if (num % 3 === 0 || num % 5 === 5) {
+        return console.log(num + " is divisible by 3 & 5");
+    } else if (num % 5 === 0) {
+        return console.log(num + " is divisible by 5");
+    } else if (num % 3 === 0) {
+        return console.log(num + " is divisible by 3");
+    } else {
+        return console.log(" is not divisible by anything")
+    }
+}
+console.log(div3n5(25))

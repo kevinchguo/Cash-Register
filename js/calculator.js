@@ -10,154 +10,121 @@
     */
 
 var register = (function() {
-    let balance = 0; //what you see on the calculator
-    let total = 0;
-    let memory = 0; //what the balance totals to
-    let registerTotal = 0;
-    let calculator = {};
-    let firstNum = null; 
-    let operator = null;
-    let secondNum = null;
-    let menuItem = null;
-    let update = null;
+  let balance = 0; //what you see on the calculator
+  let total = 0;
+  let memory = 0; //what the balance totals to
+  let registerTotal = 0;
+  let calculator = {};
+  let firstNum = null;
+  let operator = null;
+  let secondNum = null;
+  let menuItem = null;
+  let update = null;
 
-    // calculator.load = function(x) {
-    //     total = x
-    //     console.log(total)
-    //     return total;
-    // }
-
-    // calculator.saveMemory = function() {
-    //     memory = total
-    //     console.log(memory)
-    //     return memory
-    // }
-
-    calculator.getBalance = function(num) {
-        if (isNaN(num)) {
-            console.log("its not a num")
-            return balance;
-        } else {
-            balance+=num;
-            console.log("its a num")
-            return balance;
-        }
+  calculator.getBalance = function(num) {
+    if (isNaN(num)) {
+      return balance;
+    } else {
+      balance += num;
+      return balance;
     }
+  };
 
-    calculator.saveFirstNumber = function(num) {
-        firstNum = num;
-        console.log("This is the first num " + firstNum)
+  calculator.saveFirstNumber = function(num) {
+    firstNum = num;
+  };
+
+  calculator.returnFirstNumber = function() {
+    return firstNum;
+  };
+
+  calculator.saveOperator = function(oper) {
+    operator = oper;
+  };
+
+  calculator.returnUpdate = function() {};
+
+  calculator.runEquation = function(secondNum) {
+    if (operator === "+") {
+      total = firstNum + parseFloat(secondNum);
+      return total;
+    } else if (operator === "-") {
+      total = firstNum - parseFloat(secondNum);
+      return total;
+    } else if (operator === "x") {
+      total = firstNum * parseFloat(secondNum);
+      return total;
+    } else if (operator === "÷") {
+      total = firstNum / parseFloat(secondNum);
+      return total;
     }
+  };
 
-    calculator.returnFirstNumber = function() {
-        return firstNum;
+  calculator.clearMemory = function() {
+    firstNum = "";
+    secondNum = "";
+    update = "";
+  };
+
+  calculator.getRegisterTotal = function() {
+    return registerTotal;
+  };
+
+  calculator.depositCash = function(x) {
+    if (isNaN(x)) {
+      return registerTotal;
+    } else {
+      registerTotal += x;
+      return registerTotal;
     }
+  };
 
-    calculator.saveOperator = function(oper) {
-        operator = oper;
+  calculator.withdrawCash = function(x) {
+    if (isNaN(x)) {
+      return registerTotal;
+    } else {
+      registerTotal -= x;
+      return registerTotal;
     }
+  };
 
-    calculator.returnUpdate = function() {
+  calculator.add = function(x) {
+    this.validations(x);
+    total += x;
+  };
 
+  calculator.subtract = function(x) {
+    this.validations(x);
+    total -= x;
+  };
+
+  calculator.multiply = function(x) {
+    this.validations(x);
+    total *= x;
+  };
+
+  calculator.divide = function(x) {
+    this.validations(x);
+    total /= x;
+  };
+
+  calculator.orderFood = function() {
+    registerTotal += balance;
+  };
+
+  calculator.validations = function(x) {
+    if (typeof x !== "number") {
+      return "Error";
     }
+  };
 
-    calculator.runEquation = function(secondNum) {
-        if (operator === "+") {
-            total = firstNum + parseFloat(secondNum);
-            return total;
-        } else if (operator === "-") {
-            total = firstNum - parseFloat(secondNum);
-            return total;
-        } else if (operator === "x") {
-            total = firstNum * parseFloat(secondNum);
-            return total;
-        } else if (operator === "÷") {
-            total = firstNum / parseFloat(secondNum);
-            return total;
-        }
-    }
+  calculator.findMenuItem = function(menuItemPrice) {
+    menuItem = menuItemPrice;
+  };
 
-    calculator.clearMemory = function() {
-        firstNum = '';
-        secondNum = '';
-        update = '';
-        console.log(memory)
-    }
+  calculator.returnMenuItemPrice = function() {
+    return menuItem;
+  };
 
-    calculator.getRegisterTotal = function() {
-        console.log("You have " + registerTotal + " left in your register")
-        return registerTotal;
-    }
-
-    calculator.depositCash = function(x) {
-        if (isNaN(x)) {
-            return registerTotal
-        } else {
-        registerTotal+=x
-        return registerTotal;
-        }
-    }
-
-    calculator.withdrawCash = function (x) {
-        if (isNaN(x)) {
-            return registerTotal;
-        } else {
-        registerTotal-=x
-        return registerTotal;
-        }
-    }
-
-    calculator.add = function(x) {
-        this.validations(x)
-        console.log("added " + x)
-        total += x;
-    }
-
-    calculator.subtract = function(x) {
-        this.validations(x)
-        console.log("subtracted " + x)
-        total -= x;
-    }
-
-    calculator.multiply = function(x) {
-        this.validations(x)
-        console.log("multiplied " + x)
-        total *= x;
-    }
-
-    calculator.divide = function(x) {
-        this.validations(x)
-        console.log("divided " + x)
-        total /= x;
-    }
-
-    calculator.orderFood = function() {
-        console.log("i bought " + balance + " of items")
-        registerTotal+=balance
-    }
-     
-    calculator.validations = function(x) {
-        if (typeof x !== "number") {
-            return "Error"
-        }
-    }
-
-    calculator.findMenuItem = function(menuItemPrice) {
-        menuItem = menuItemPrice
-    }
-
-    calculator.returnMenuItemPrice = function() {
-        return menuItem;
-    }
-
-    return calculator;
-
+  return calculator;
 })();
-
-// register.depositCash(250)
-// console.log(register.add(50))
-// console.log(register.add(50))
-// console.log(register.getBalance())
-// // register.clearBalance()
-// register.orderFood()
-// console.log(register.getRegisterTotal())
